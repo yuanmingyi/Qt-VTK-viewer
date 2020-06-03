@@ -5,7 +5,9 @@
 #include <QFileDialog>
 #include <QMessageBox>
 
+#include <vtkNew.h>
 #include <vtkDataSetReader.h>
+#include <vtkOBJReader.h>
 
 MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent),
@@ -26,16 +28,7 @@ void MainWindow::showAboutDialog()
 
 void MainWindow::showOpenFileDialog()
 {
-  QString fileName = QFileDialog::getOpenFileName(this, tr("Open file"), "", "VTK Files (*.vtk)");
-
-  // Open file
-  QFile file(fileName);
-  file.open(QIODevice::ReadOnly);
-
-  // Return on Cancel
-  if (!file.exists())
-    return;
-
+  QString fileName = QFileDialog::getOpenFileName(this, tr("Open file"), "", "OBJ Files (*.obj)");
   openFile(fileName);
 }
 
@@ -44,7 +37,7 @@ void MainWindow::openFile(const QString &fileName)
   ui->sceneWidget->removeDataSet();
 
   // Create reader
-  vtkSmartPointer<vtkDataSetReader> reader = vtkSmartPointer<vtkDataSetReader>::New();
+  vtkNew<vtkOBJReader> reader;
   reader->SetFileName(fileName.toStdString().c_str());
 
   // Read the file

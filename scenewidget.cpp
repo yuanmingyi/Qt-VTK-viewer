@@ -48,8 +48,8 @@ void SceneWidget::removeDataSet()
   {
     m_renderer->RemoveActor(actor);
   }
-
-  renderVTK();
+  update();
+  //renderVTK();
 }
 
 void SceneWidget::zoomToExtent()
@@ -60,6 +60,6 @@ void SceneWidget::zoomToExtent()
   {
     m_renderer->ResetCamera(actor->GetBounds());
   }
-
-  renderVTK();
+  update();
+  //renderVTK();
 }
