@@ -50,3 +50,4 @@ void MainWindow::openFile(const QString &fileName)
     ui->sceneWidget->addDataSet(reader->GetOutput());
   }
 }
+

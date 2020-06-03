@@ -1,6 +1,7 @@
 #ifndef SCENEWIDGET_H
 #define SCENEWIDGET_H
 
+#include <QObject>
 #include <QVTKOpenGLNativeWidget.h>
 #include <vtkSmartPointer.h>
 #include <vtkRenderer.h>
@@ -10,7 +11,7 @@ class SceneWidget : public QVTKOpenGLNativeWidget
 {
   Q_OBJECT
 public:
-  explicit SceneWidget(QWidget *parent = 0);
+  explicit SceneWidget(QWidget *parent = nullptr);
 
   //! Add a data set to the scene
   /*!

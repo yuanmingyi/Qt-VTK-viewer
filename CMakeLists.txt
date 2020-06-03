@@ -23,16 +23,6 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 qt5_add_resources(Resources ${Resources})
 
-include_directories(${Qt5Widgets_INCLUDES})
-include_directories(${Qt5OpenGL_INCLUDES})
-include_directories(${Qt5Core_INCLUDES})
-include_directories(${Qt5Gui_INCLUDES})
-
-add_definitions(${Qt5Widgets_DEFINITIONS})
-add_definitions(${Qt5OpenGL_DEFINITIONS})
-add_definitions(${Qt5Gui_DEFINITIONS})
-add_definitions(${Qt5Core_DEFINITIONS})
-
 # Find package VTK
 find_package(VTK REQUIRED)
 
@@ -40,10 +30,10 @@ find_package(VTK REQUIRED)
 include(${VTK_USE_FILE})
 include_directories(${VTK_INCLUDE_DIRS})
 
-set(CMAKE_CXX_FLAGS "${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
+#set(CMAKE_CXX_FLAGS "${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
 
 # Build executable
-add_executable(QtVtkViewer WIN32 ${Sources} ${Headers} ${Resources} ${UIs})
+add_executable(QtVtkViewer MACOSX_BUNDLE ${Sources} ${Headers} ${Resources} ${UIs})
 
 # Link libraries
 target_link_libraries(QtVtkViewer Qt5::Widgets Qt5::OpenGL ${VTK_LIBRARIES})
